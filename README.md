@@ -1,4 +1,4 @@
-# 🪑 FurniFlip
+# FurniFlip
 
 **AI-powered furniture marketplace automation platform**
 
