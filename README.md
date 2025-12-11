@@ -2,7 +2,7 @@
 
 **AI-powered furniture marketplace automation platform**
 
-FurniFlip transforms photos of your furniture into professional listings and automatically posts them to multiple marketplaces including Facebook Marketplace and Craigslist. Using advanced AI image analysis and web scraping, it creates compelling product descriptions and handles the entire selling process.
+FurniFlip transforms photos of your furniture into professional listings and automatically posts them to multiple marketplaces including Facebook Marketplace and Craigslist. Using advanced AI image analysis and web scraping, it creates compelling product descriptions and handles the entire sales cycle.
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
