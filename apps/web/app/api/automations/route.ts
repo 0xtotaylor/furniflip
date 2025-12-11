@@ -31,7 +31,7 @@ async function getAutomations(search: string = ''): Promise<{
   automations: any[];
   totalAutomations: number;
 }> {
-  const supabase = createClient();
+  const supabase = await createClient();
   let query = supabase
     .from('autopilot')
     .select('*, inventory(title, image_url)', { count: 'exact' })

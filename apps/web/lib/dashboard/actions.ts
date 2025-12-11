@@ -3,7 +3,7 @@
 import { createClient } from '@/lib/supabase/server';
 
 export async function updateListing(formData: FormData) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const id = formData.get('id') as string;
 
   const { data: currentProduct, error: fetchError } = await supabase
@@ -95,7 +95,7 @@ export async function updateListing(formData: FormData) {
 }
 
 export async function automateListing(id: string, checked: boolean) {
-  const supabase = createClient();
+  const supabase = await createClient();
   if (checked) {
     const { error } = await supabase
       .from('autopilot')
@@ -108,20 +108,20 @@ export async function automateListing(id: string, checked: boolean) {
 }
 
 export async function deleteListing(id: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { error } = await supabase.from('inventory').delete().eq('id', id);
   if (error) throw Error(error.message);
 }
 
 export async function deleteCatalog(formData: FormData) {
-  const supabase = createClient();
+  const supabase = await createClient();
   let id = formData.get('id');
   const { error } = await supabase.from('catalogs').delete().eq('id', id);
   if (error) throw Error(error.message);
 }
 
 export async function getCategories() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: categories } = await supabase.rpc('get_types', {
     enum_type: 'category'
   });
@@ -129,7 +129,7 @@ export async function getCategories() {
 }
 
 export async function getConditions() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: conditions } = await supabase.rpc('get_types', {
     enum_type: 'condition'
   });
@@ -137,7 +137,7 @@ export async function getConditions() {
 }
 
 export async function getStatuses() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: statuses } = await supabase.rpc('get_types', {
     enum_type: 'status'
   });
@@ -145,7 +145,7 @@ export async function getStatuses() {
 }
 
 export async function getStages() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: stages } = await supabase.rpc('get_types', {
     enum_type: 'stage'
   });
@@ -153,7 +153,7 @@ export async function getStages() {
 }
 
 export async function getPlatforms() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: platforms } = await supabase.rpc('get_types', {
     enum_type: 'platform'
   });

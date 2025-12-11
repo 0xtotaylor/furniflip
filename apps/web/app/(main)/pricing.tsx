@@ -20,9 +20,9 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 /** Available billing frequency options */
 const frequencies = [
-  { value: 'monthly', label: 'Monthly', priceSuffix: '/month' },
-  { value: 'annually', label: 'Annually', priceSuffix: '/year' }
-];
+  { value: 'monthly' as const, label: 'Monthly', priceSuffix: '/month' },
+  { value: 'annually' as const, label: 'Annually', priceSuffix: '/year' }
+] as const;
 
 const tiers = [
   {
@@ -67,7 +67,7 @@ const tiers = [
 ];
 
 export function Pricing() {
-  const [frequency, setFrequency] = useState(frequencies[0]);
+  const [frequency, setFrequency] = useState<(typeof frequencies)[number]>(frequencies[0]);
 
   return (
     <section id="pricing" className="bg-white py-24 sm:py-32">
@@ -144,7 +144,7 @@ export function Pricing() {
               </p>
               <p className="mt-6 flex items-baseline gap-x-1">
                 <span className="text-4xl font-bold tracking-tight text-gray-900">
-                  {tier.price[frequency.value as keyof typeof tier.price]}
+                  {tier.price[frequency.value]}
                 </span>
                 {tier.name !== 'Free' && (
                   <span className="text-sm font-semibold leading-6 text-gray-600">

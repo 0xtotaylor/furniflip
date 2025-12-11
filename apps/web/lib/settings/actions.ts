@@ -3,7 +3,7 @@
 import { createClient } from '@/lib/supabase/server';
 
 export async function updatePassword(password: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   if (typeof password !== 'string' || password.trim() === '') {
     throw new Error('Password must be a non-empty string');
@@ -14,7 +14,7 @@ export async function updatePassword(password: string) {
 }
 
 export async function updatePersonalInformation(formData: FormData) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const updates: {
     first_name?: FormDataEntryValue | null;
@@ -47,7 +47,7 @@ export async function updatePersonalInformation(formData: FormData) {
 }
 
 export async function deleteUser() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const {
     data: { session }
   } = await supabase.auth.getSession();

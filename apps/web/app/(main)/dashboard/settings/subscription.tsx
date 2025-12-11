@@ -7,10 +7,12 @@ import { Check } from 'lucide-react';
 import { useSupabase } from '@/context/SupabaseProvider';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
+type FrequencyValue = 'monthly' | 'annually';
+
 const frequencies = [
-  { value: 'monthly', label: 'Monthly', priceSuffix: '/month' },
-  { value: 'annually', label: 'Annually', priceSuffix: '/year' }
-];
+  { value: 'monthly' as const, label: 'Monthly', priceSuffix: '/month' },
+  { value: 'annually' as const, label: 'Annually', priceSuffix: '/year' }
+] as const;
 
 const tiers = [
   {
@@ -68,7 +70,7 @@ const tiers = [
 
 export function SubscriptionSettings() {
   const { profile } = useSupabase();
-  const [frequency, setFrequency] = useState(frequencies[0]);
+  const [frequency, setFrequency] = useState<(typeof frequencies)[number]>(frequencies[0]);
 
   const getButtonConfig = (
     tierName: string,
@@ -109,7 +111,7 @@ export function SubscriptionSettings() {
         profile?.tier === 'Free' && tierName !== 'Free'
           ? 'Upgrade'
           : 'Get started',
-      href: tierHref[frequency.value as 'monthly' | 'annually'],
+      href: tierHref[frequency.value],
       disabled: false
     };
   };
@@ -181,7 +183,7 @@ export function SubscriptionSettings() {
                 </p>
                 <p className="mt-6 flex items-baseline gap-x-1">
                   <span className="text-4xl font-bold tracking-tight text-gray-900">
-                    {tier.price[frequency.value as 'monthly' | 'annually']}
+                    {tier.price[frequency.value]}
                   </span>
                   {tier.name !== 'Free' && (
                     <span className="text-sm font-semibold leading-6 text-gray-600">

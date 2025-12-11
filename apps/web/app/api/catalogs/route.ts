@@ -31,7 +31,7 @@ async function getCatalogs(search: string = ''): Promise<{
   catalogs: any[];
   totalCatalogs: number;
 }> {
-  const supabase = createClient();
+  const supabase = await createClient();
   let query = supabase
     .from('catalogs')
     .select('*', { count: 'exact' })

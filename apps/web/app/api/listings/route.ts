@@ -31,7 +31,7 @@ async function getListings(search: string = ''): Promise<{
   listings: any[];
   totalListings: number;
 }> {
-  const supabase = createClient();
+  const supabase = await createClient();
   let query = supabase
     .from('inventory')
     .select('*, autopilot(inventory_id)', { count: 'exact' })

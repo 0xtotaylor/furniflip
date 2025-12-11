@@ -3,7 +3,7 @@
 import { createClient } from '@/lib/supabase/server';
 
 export async function login(formData: FormData) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const data = {
     email: formData.get('email') as string,
@@ -18,7 +18,7 @@ export async function login(formData: FormData) {
 }
 
 export async function register(formData: FormData) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const data = {
     email: formData.get('email') as string,
